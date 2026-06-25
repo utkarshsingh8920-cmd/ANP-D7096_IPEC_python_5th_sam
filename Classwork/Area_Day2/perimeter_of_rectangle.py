@@ -13,4 +13,11 @@ else:
     print("Perimeter of Rectangle =",2 * (length + breadth))
 #--------------------------------------------------
 '''Output:
+Enter the length of the rectangle: 12
+Enter the breadth of the rectangle: 32
+----------------------------------------------
+The length of Rectangle is = 12.0
+The breath of Rectangle is = 32.0
+Area of Rectangle = 384.0
+Perimeter of Rectangle = 88.0
 '''
