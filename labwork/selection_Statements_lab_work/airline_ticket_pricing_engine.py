@@ -63,3 +63,16 @@ elif age > 60:
 
 # Display the final fare
 print("Final Ticket Fare: ₹", fare)
+"""
+Output :
+Enter Passenger Age: 23
+------------------------------------------
+Business Class (Y/N): y 
+Window Seat (Y/N): y
+Weekend Travel (Y/N): y
+-------------------------------------------
+Base Fare: ₹5000
+Additional Charges: ₹ 4500
+Final Ticket Fare: ₹ 9500
+
+"""
