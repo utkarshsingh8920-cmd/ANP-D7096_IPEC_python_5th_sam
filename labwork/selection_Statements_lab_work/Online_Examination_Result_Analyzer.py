@@ -66,4 +66,16 @@ else:
 
         else:
             print("Classification: Pass")
-            print("-------------------------------------------")
+    print("-------------------------------------------")
+"""
+Output:
+-------------------------------------------
+Enter marks of student in Hindi: 56
+Enter marks of student in English: 56
+Enter marks of student in Mathematics: 45 
+Enter marks of student in Science: 45
+Enter marks of student in Computer: 54
+-------------------------------------------
+Average Marks: 51.2
+Result: PASS
+Classification: Second Division"""
