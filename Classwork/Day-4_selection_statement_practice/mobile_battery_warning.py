@@ -14,14 +14,15 @@ Connect Charger Immediately
 # Smartphone Low Battery Warning
 print("------------------------------------------------")
 battery = int(input("Enter the battery percentage: "))
+#----------------------Chacking validation-----------------------------
 if battery<0:
     exit("Mobile battery can not negative")
-
+#------------------- Chacking condition given by user----------------------
 if battery < 15:
     print("Connect Charger Immediately")
 else:
     print("If you want you can connect charger ")
-
+#----------------------------------------------------------------------
 print("------------------------------------------------")
 """Output:
 ------------------------------------------------
