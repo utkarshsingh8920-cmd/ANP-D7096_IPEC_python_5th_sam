@@ -44,4 +44,15 @@ print("Passed Students =", pass_count)
 print("Distinction Students =", distinction)
 #----------------------------------------------------------------------------------
 """Output :
+Enter Number of Students: 5
+Enter Marks: 20
+Enter Marks: 40
+Enter Marks: 40
+Enter Marks: 54
+Enter Marks: 60
+Highest Marks = 60.0
+Lowest Marks = 20.0
+Average Marks = 42.8
+Passed Students = 4
+Distinction Students = 0
 """
