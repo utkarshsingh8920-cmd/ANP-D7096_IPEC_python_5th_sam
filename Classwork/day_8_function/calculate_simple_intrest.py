@@ -6,4 +6,12 @@ def calculate_simple_interest(principal,rate,time):
 principal = float(input("Enter principal (in Rs): "))
 rate = float(input("Enter rate (in %): "))
 time = int(input("Enter time : "))
+# calling the function 
 print ("Simple interest : Rs ",calculate_simple_interest(principal,rate,time))
+"""
+Output :
+Enter principal (in Rs): 23234
+Enter rate (in %): 20
+Enter time : 2
+Simple interest : Rs  9293.6
+"""
