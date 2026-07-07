@@ -27,7 +27,7 @@ def grade_calculater(marks):
     
 #main program
 for x in range(5):
-    marks = int(input("Enter marks of student :" ))
+    marks = float(input("Enter marks of student :" ))
 
     if marks <0 and marks>100:
        exit("Enter correct marks")
