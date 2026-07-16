@@ -1,0 +1,92 @@
+"""
+Problem 7: Student Result Management 
+Create a dictionary where 
+Roll No → Marks 
+Store details of 10 students. 
+Perform: 
+• Find topper  
+• Find average marks  
+• Display students scoring above average  
+• Count failed students (Marks < 35)  
+• Display grade using:  
+ 
+Marks Grade 
+__________________
+| 90+     |  A   |
+| 75-89   |  B   |
+| 60-74   |  C   |
+| 35-59   |  D   |
+| Below 35| Fail |
+------------------
+"""
+"""
+Problem 7: Student Result Management
+"""
+
+# ---- Take and validate details of 10 students ----
+students = {}                          # dictionary: Roll No -> Marks
+print("Enter details of 10 students:")
+
+count = 0
+while count < 10:
+    roll_no = input(f"Roll No for student {count + 1}: ").strip()
+    if roll_no == "":
+        print("Invalid input! Roll number cannot be empty.")
+        continue
+    if roll_no in students:
+        print("Invalid input! This roll number already exists.")
+        continue
+
+    marks_input = input(f"Marks for student {count + 1}: ")
+    try:
+        marks = float(marks_input)
+        if marks < 0 or marks > 100:
+            print("Invalid input! Marks must be between 0 and 100.")
+            continue
+    except ValueError:
+        print("Invalid input! Please enter a valid number.")
+        continue
+
+    students[roll_no] = marks
+    count += 1
+
+# ---- Find topper ----
+topper_roll = max(students, key=students.get)
+
+# ---- Find average marks ----
+average_marks = sum(students.values()) / len(students)
+
+# ---- Students scoring above average ----
+above_average = {}
+for roll_no, marks in students.items():
+    if marks > average_marks:
+        above_average[roll_no] = marks
+
+# ---- Count failed students (marks < 35) ----
+failed_count = 0
+for marks in students.values():
+    if marks < 35:
+        failed_count += 1
+
+# ---- Display results ----
+print(f"Topper                 : Roll No {topper_roll} with {students[topper_roll]} marks")
+print("Average Marks           : ",average_marks:.2f)
+print("Students Above Average  : ",above_average)
+print("Failed Students Count   : ",failed_count)
+
+# ---- Display grade for each student ----
+print("Grades:")
+for roll_no, marks in students.items():
+    if marks >= 90:
+        grade = "A"
+    elif marks >= 75:
+        grade = "B"
+    elif marks >= 60:
+        grade = "C"
+    elif marks >= 35:
+        grade = "D"
+    else:
+        grade = "Fail"
+
+    print(f"Roll No {roll_no} -> Marks: {marks}, Grade: {grade}")
+

@@ -1,0 +1,220 @@
+"""
+Problem 10: Student Record Management System 
+Create a menu-driven application. 
+Each student should have: 
+• Roll Number  
+• Name  
+• Age  
+• Course  
+• Marks  
+Store records using a list of dictionaries. 
+Menu: 
+1. Add Student 
+2. Display All Students 
+3. Search Student by Roll Number 
+4. Update Marks 
+5. Delete Student 
+6. Display Topper 
+7. Display Average Marks 
+8. Display Students Above Average 
+9. Exit 
+Requirements: 
+• Implement each menu option using separate user-defined functions.  
+• Validate duplicate roll numbers.  
+• Handle invalid menu choices.  
+• Keep displaying the menu until the user selects Exit.  
+"""
+"""
+ Student Record Management System
+"""
+
+students = []  # list of dictionaries, each dictionary = one student record
+
+
+def add_student():
+    """Add a new student after validating roll number, age and marks."""
+    roll_no = input("Enter Roll Number: ").strip()
+    if roll_no == "":
+        print("Invalid input! Roll number cannot be empty.")
+        return
+
+    # validate duplicate roll numbers
+    for student in students:
+        if student["roll_no"] == roll_no:
+            print("Error: A student with this Roll Number already exists.")
+            return
+
+    name = input("Enter Name: ").strip()
+    if name == "":
+        print("Invalid input! Name cannot be empty.")
+        return
+
+    course = input("Enter Course: ").strip()
+    if course == "":
+        print("Invalid input! Course cannot be empty.")
+        return
+
+    age_input = input("Enter Age: ")
+    marks_input = input("Enter Marks: ")
+
+    try:
+        age = int(age_input)
+        marks = float(marks_input)
+        if age <= 0:
+            print("Invalid input! Age must be a positive number.")
+            return
+        if marks < 0 or marks > 100:
+            print("Invalid input! Marks must be between 0 and 100.")
+            return
+    except ValueError:
+        print("Invalid input! Age must be a whole number and marks must be a number.")
+        return
+
+    students.append({
+        "roll_no": roll_no,
+        "name": name,
+        "age": age,
+        "course": course,
+        "marks": marks
+    })
+    print("Student added successfully.")
+
+
+def display_all_students():
+    """Display all student records."""
+    if not students:
+        print("No student records found.")
+        return
+
+    print("\n" + "-" * 60)
+    for student in students:
+        print(f"Roll No: {student['roll_no']} | Name: {student['name']} | "
+              f"Age: {student['age']} | Course: {student['course']} | "
+              f"Marks: {student['marks']}")
+    print("-" * 60)
+
+
+def search_student():
+    """Search for a student by roll number."""
+    roll_no = input("Enter Roll Number to search: ").strip()
+    if roll_no == "":
+        print("Invalid input! Roll number cannot be empty.")
+        return
+
+    for student in students:
+        if student["roll_no"] == roll_no:
+            print(f"Found -> Name: {student['name']}, Age: {student['age']}, "
+                  f"Course: {student['course']}, Marks: {student['marks']}")
+            return
+    print("Student not found.")
+
+
+def update_marks():
+    """Update marks for an existing student, with validation."""
+    roll_no = input("Enter Roll Number to update marks: ").strip()
+    for student in students:
+        if student["roll_no"] == roll_no:
+            marks_input = input("Enter new marks: ")
+            try:
+                new_marks = float(marks_input)
+                if new_marks < 0 or new_marks > 100:
+                    print("Invalid input! Marks must be between 0 and 100.")
+                    return
+            except ValueError:
+                print("Invalid input! Please enter a valid number.")
+                return
+
+            student["marks"] = new_marks
+            print("Marks updated successfully.")
+            return
+    print("Student not found.")
+
+
+def delete_student():
+    """Delete a student record by roll number."""
+    roll_no = input("Enter Roll Number to delete: ").strip()
+    for student in students:
+        if student["roll_no"] == roll_no:
+            students.remove(student)
+            print("Student deleted successfully.")
+            return
+    print("Student not found.")
+
+
+def display_topper():
+    """Display the student with the highest marks."""
+    if not students:
+        print("No student records found.")
+        return
+    topper = max(students, key=lambda s: s["marks"])
+    print(f"Topper -> Roll No: {topper['roll_no']}, Name: {topper['name']}, "
+          f"Marks: {topper['marks']}")
+
+
+def display_average_marks():
+    """Display the average marks of all students."""
+    if not students:
+        print("No student records found.")
+        return
+    average = sum(s["marks"] for s in students) / len(students)
+    print(f"Average Marks: {average:.2f}")
+
+
+def display_above_average():
+    """Display students who scored above the average marks."""
+    if not students:
+        print("No student records found.")
+        return
+    average = sum(s["marks"] for s in students) / len(students)
+    above_average = [s for s in students if s["marks"] > average]
+
+    if not above_average:
+        print("No students scored above average.")
+        return
+
+    print(f"Students scoring above average ({average:.2f}):")
+    for student in above_average:
+        print(f"Roll No: {student['roll_no']}, Name: {student['name']}, Marks: {student['marks']}")
+
+
+def display_menu():
+    """Display the main menu."""
+    print("\n===== Student Record Management System =====")
+    print("1. Add Student")
+    print("2. Display All Students")
+    print("3. Search Student by Roll Number")
+    print("4. Update Marks")
+    print("5. Delete Student")
+    print("6. Display Topper")
+    print("7. Display Average Marks")
+    print("8. Display Students Above Average")
+    print("9. Exit")
+
+
+# ---- Main program loop ----
+while True:
+    display_menu()
+    choice = input("Enter your choice (1-9): ").strip()
+
+    # validate that the choice is a recognized menu option
+    if choice == "1":
+        add_student()
+    elif choice == "2":
+        display_all_students()
+    elif choice == "3":
+        search_student()
+    elif choice == "4":
+        update_marks()
+    elif choice == "5":
+        delete_student()
+    elif choice == "6":
+        display_topper()
+    elif choice == "7":
+        display_average_marks()
+    elif choice == "8":
+        display_above_average()
+    elif choice == "9":
+        print("Exiting the program. Goodbye!")
+        break
+    else:
+        print("Invalid choice. Please select a valid menu option (1-9).")

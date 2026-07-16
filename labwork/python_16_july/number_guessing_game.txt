@@ -1,0 +1,48 @@
+"""
+Problem 3: Number Guessing Game 
+Create a number guessing game. 
+Rules: 
+• Secret number = 57  
+• User gets only 7 attempts.  
+• If the user enters a negative number, ignore it using continue.  
+• If the user guesses correctly, terminate using break.  
+• Display the number of attempts used.
+"""
+"""
+Number Guessing Game
+"""
+
+# ---- Game setup ----
+secret_number = 57
+max_attempts = 7
+attempts_used = 0
+
+# ---- Main game loop ----
+while attempts_used < max_attempts:
+
+    # validate that the user enters a proper whole number
+    guess_input = input("Guess the number: ")
+    if not guess_input.lstrip("-").isdigit():
+        print("Invalid input! Please enter a whole number.")
+        continue
+
+    guess = int(guess_input)
+
+    # ignore negative numbers without counting them as an attempt
+    if guess < 0:
+        print("Negative numbers are not allowed. Try again.")
+        continue
+
+    attempts_used += 1                 # a valid, non-negative guess counts as an attempt
+
+    if guess == secret_number:
+        print("Correct! You guessed it in",attempts_used," attempts.")
+        break
+    elif guess < secret_number:
+        print("Too low!")
+    else:
+        print("Too high!")
+else:
+    # this runs only if the while loop finishes without a 'break' (i.e. attempts ran out)
+    print("Out of attempts! The correct number was",secret_number)
+    print("Attempts used:",attempts_used)

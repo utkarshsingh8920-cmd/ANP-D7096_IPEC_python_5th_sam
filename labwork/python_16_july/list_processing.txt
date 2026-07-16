@@ -1,0 +1,77 @@
+"""
+Problem 5: List Processing 
+Accept 20 integers from the user into a list. 
+Perform the following: 
+a) Print largest number  
+b) Print second largest number  
+c) Print smallest number  
+d) Remove duplicate elements  
+e) Print only even numbers  
+f) Print numbers divisible by both 3 and 5  
+g) Reverse the list without using reverse() 
+"""
+"""
+List Processing
+"""
+
+# ---- Take and validate 20 integers from the user ----
+numbers = []
+print("Enter 20 integers:")
+count = 0
+while count < 20:
+    value = input(f"Number {count + 1}: ")
+    if value.lstrip("-").isdigit():    # allow negative numbers too
+        numbers.append(int(value))
+        count += 1
+    else:
+        print("Invalid input! Please enter a whole number.")
+
+# ---- a) Find the largest number ----
+largest = numbers[0]
+for num in numbers:
+    if num > largest:
+        largest = num
+
+# ---- b) Find the second largest number ----
+second_largest = float("-inf")
+for num in numbers:
+    if num != largest and num > second_largest:
+        second_largest = num
+
+# ---- c) Find the smallest number ----
+smallest = numbers[0]
+for num in numbers:
+    if num < smallest:
+        smallest = num
+
+# ---- d) Remove duplicate elements (preserving order) ----
+unique_numbers = []
+for num in numbers:
+    if num not in unique_numbers:
+        unique_numbers.append(num)
+
+# ---- e) Print only even numbers ----
+even_numbers = []
+for num in numbers:
+    if num % 2 == 0:
+        even_numbers.append(num)
+
+# ---- f) Numbers divisible by both 3 and 5 ----
+div_3_and_5 = []
+for num in numbers:
+    if num % 3 == 0 and num % 5 == 0:
+        div_3_and_5.append(num)
+
+# ---- g) Reverse the list without using reverse() ----
+reversed_numbers = []
+for i in range(len(numbers) - 1, -1, -1):
+    reversed_numbers.append(numbers[i])
+
+# ---- Display results ----
+print("a) Largest number            : ",largest)
+print("b) Second largest number     : ",second_largest)
+print("c) Smallest number           : ",smallest)
+print("d) List without duplicates   : ",unique_numbers)
+print("e) Even numbers              : ",even_numbers)
+print("f) Divisible by 3 and 5      : ",div_3_and_5)
+print("g) Reversed list             : ",reversed_numbers)

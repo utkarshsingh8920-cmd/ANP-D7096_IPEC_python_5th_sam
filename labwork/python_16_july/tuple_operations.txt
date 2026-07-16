@@ -1,0 +1,57 @@
+"""
+Problem 6: Tuple Operations 
+Create a tuple containing names of 15 students. 
+Perform the following: 
+• Count total students  
+• Display first five students  
+• Display last five students  
+• Search a student name  
+• Count occurrences of a given name  
+• Convert tuple into list and sort alphabetically
+"""
+"""
+Tuple Operations
+"""
+"""
+Problem 6: Tuple Operations
+"""
+
+# ---- Tuple of 15 student names ----
+students = (
+    "Amit", "Riya", "Karan", "Sneha", "Vikram",
+    "Pooja", "Rahul", "Neha", "Arjun", "Divya",
+    "Manish", "Kavita", "Suresh", "Anjali", "Rohit"
+)
+
+# ---- Count total students ----
+print("Total Students        : ",len(students")
+
+# ---- Display first five and last five students ----
+print(f"First Five Students   : ",students[:5]")
+print(f"Last Five Students    : ",students[-5:]")
+
+# ---- Search a student name (with validation) ----
+while True:
+    search_name = input("Enter a student name to search: ").strip()
+    if search_name != "":
+        break
+    print("Invalid input! Name cannot be empty.")
+
+if search_name in students:
+    print(f"'{search_name}' found in the list.")
+else:
+    print(f"'{search_name}' not found in the list.")
+
+# ---- Count occurrences of a given name (with validation) ----
+while True:
+    count_name = input("Enter a student name to count occurrences: ").strip()
+    if count_name != "":
+        break
+    print("Invalid input! Name cannot be empty.")
+
+print(f"'{count_name}' occurs {students.count(count_name)} time(s).")
+
+# ---- Convert tuple into list and sort alphabetically ----
+sorted_students = list(students)
+sorted_students.sort()
+print("Sorted Student List: ",sorted_students)
